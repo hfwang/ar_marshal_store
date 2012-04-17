@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "ar_marshal_store.gemspec",
-    "lib/ar-marshal-store.rb",
-    "lib/ar-marshal-store/railtie.rb"
+    "lib/ar_marshal_store.rb",
+    "lib/ar_marshal_store/railtie.rb"
   ]
   s.homepage = "http://github.com/hfwang/ar_marshal_store"
   s.require_paths = ["lib"]
