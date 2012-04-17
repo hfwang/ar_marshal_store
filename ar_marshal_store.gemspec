@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "ar-marshal-store.gemspec",
+    "ar_marshal_store.gemspec",
     "lib/ar-marshal-store.rb",
     "lib/ar-marshal-store/railtie.rb"
   ]
