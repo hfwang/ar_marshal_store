@@ -10,7 +10,7 @@ begin
     gem.email = "hfwang@porkbuns.net"
     gem.homepage = "http://github.com/hfwang/ar-marshal-store"
     gem.authors = ["Hsiu-Fan Wang"]
-    gem.add_dependency('activerecord', '~> 3')
+    gem.add_dependency('activerecord', '>= 3.1.0')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
