@@ -1,0 +1,97 @@
+= ActiveRecord Marshal Store
+
+Rails/ActiveRecord 3 comes with a cool ActiveRecord::Store feature
+that allows for creating a fairly lightweight schema-less
+model. However, it uses YAML, which has poor performance and is just
+generally silly.
+
+This gem enhances ActiveRecord to store such things using the Marshal
+module which is pretty darn fast, compact and seemingly less flakey
+than Psych.
+
+== Usage
+
+You can call marshal_store similary to how you would previously have
+called store.
+
+  class FooModel < ActiveRecord::Base
+    # The old, YAML-based version would look like:
+    # store :extras, :accessors => :foo, :bar
+
+    # The new, marshal-based version would look like:
+    marshal_store :extras, :accessors => :foo, :bar
+  end
+
+In addition, you can also use the exposed marshal coder as a column
+coder, much like YamlCoder in serialize:
+
+  class FooModel < ActiveRecord::Base
+    # Used to serialize field as a hash via YAML
+    # serialize :field, Hash
+
+    # Now use marshal!
+    serialize :field, ArMarshalStore::NilFriendlyMarshal
+  end
+
+=== Ruby
+
+This gem has been tested with:
+
+* Ruby 1.8.7
+* Ruby 1.9.3
+
+If this works for you, great! If you use a different ruby, please let
+me know, and I will update this.
+
+=== Rails
+
+Add ar-marshal-store to your Gemfile.
+
+  gem 'ar-marshal-store', :git => 'git://github.com/hfwang/ar-marshal-store.git'
+
+The necessary code is included into ActiveRecord::Base automatically.
+
+=== Outside of Rails
+  require 'ar-marshal-store'
+  class MyModel < ActiveRecord::Base
+    include ArMarshalStore
+
+    # ... usage of ArMarshalStore here.
+
+  end
+
+== Note on Patches/Pull Requests
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright / License
+
+(2-clause BSD)
+
+Copyright (c) 2012, Hsiu-Fan Wang
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
