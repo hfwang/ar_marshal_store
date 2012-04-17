@@ -22,3 +22,5 @@ module ArMarshalStore
     end
   end
 end
+
+require 'ar-marshal-store/railtie.rb' if defined?(Rails)
