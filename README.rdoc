@@ -45,14 +45,14 @@ me know, and I will update this.
 
 === Rails
 
-Add ar-marshal-store to your Gemfile.
+Add ar_marshal_store to your Gemfile.
 
-  gem 'ar-marshal-store', :git => 'git://github.com/hfwang/ar-marshal-store.git'
+  gem 'ar_marshal_store', :git => 'git://github.com/hfwang/ar_marshal_store.git'
 
 The necessary code is included into ActiveRecord::Base automatically.
 
 === Outside of Rails
-  require 'ar-marshal-store'
+  require 'ar_marshal_store'
   class MyModel < ActiveRecord::Base
     include ArMarshalStore
 
@@ -75,6 +75,7 @@ The necessary code is included into ActiveRecord::Base automatically.
 (2-clause BSD)
 
 Copyright (c) 2012, Hsiu-Fan Wang
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
