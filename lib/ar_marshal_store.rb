@@ -27,7 +27,7 @@ module ArMarshalStore
 
     private
     def default_value
-      opts[:default].duplicable? ? opts[:default].dup : opts[:default]
+      @opts[:default].duplicable? ? @opts[:default].dup : @opts[:default]
     end
   end
 
