@@ -1,15 +1,33 @@
 module ArMarshalStore
   class NilFriendlyMarshal
-    def self.load(str)
+    def initialize(opts = nil)
+      @opts = opts
+      @opts ||= { :default => Hash.new() }
+    end
+
+    def load(str)
       if str.nil?
-        return Hash.new
+        return default_value
       else
-        Marshal.load(str) || Hash.new
+        Marshal.load(str) || default_value
       end
     end
 
-    def self.dump(str)
+    def dump(str)
       Marshal.dump(str)
+    end
+
+    def self.load(str)
+      ArMarshalStore::NilFriendlyMarshal::DEFAULT.load(str)
+    end
+
+    def self.dump(str)
+      ArMarshalStore::NilFriendlyMarshal::DEFAULT.dump(str)
+    end
+
+    private
+    def default_value
+      opts[:default].duplicable? ? opts[:default].dup : opts[:default]
     end
   end
 
@@ -22,5 +40,7 @@ module ArMarshalStore
     end
   end
 end
+
+ArMarshalStore::NilFriendlyMarshal::DEFAULT = ArMarshalStore::NilFriendlyMarshal.new
 
 require 'ar_marshal_store/railtie.rb' if defined?(Rails)
